@@ -47,3 +47,7 @@ Depois de nossa alteração ficará dessa maneira:
 E por último iremos deletar nosso aluno do banco de dados através do DELETE:
 
 ![Deletando o aluno](./img/delete.png)
+
+E o arquivo UML do projeto:
+
+![Arquivo UML](./img/School_System_UML.png)
