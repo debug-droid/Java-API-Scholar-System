@@ -16,9 +16,16 @@ public class AlunoService {
 	@Autowired
 	private AlunoRepository repository;
 	
-	public void cadastrarAluno(DadosAluno dados) {
-		AlunoModel aluno = new AlunoModel(dados);
-		repository.save(aluno);
+	public String cadastrarAluno(DadosAluno dados) {
+
+		var aluno = repository.findByCpf(dados.cpf());
+		
+		if (aluno.isPresent()) {
+			return "Aluno Já existe.";
+		} else {
+			repository.save(new AlunoModel(dados));
+			return "Cadastro efetuado com sucesso!";
+		}
 	}
 	
 	public List<AlunoModel> encontrarAlunos() {
