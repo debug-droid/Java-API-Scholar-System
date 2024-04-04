@@ -95,8 +95,8 @@ public class AlunoController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public String deletarAlunoPorId(@PathVariable Long id) {
+	public ResponseEntity deletarAlunoPorId(@PathVariable Long id) {
 		service.deletarAlunoPorId(id);
-		return "Aluno(a) deletado com sucesso!";
+		return ResponseEntity.noContent().build();
 	}
 }
