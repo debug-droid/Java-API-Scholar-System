@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.schoolsystem.AlunoService.AlunoService;
 import br.com.schoolsystem.dto.DadosAluno;
 import br.com.schoolsystem.model.AlunoModel;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/aluno")
@@ -75,7 +76,7 @@ public class AlunoController {
 	}
 	
 	@PutMapping("/{id}")
-	public String atualizarAluno(@PathVariable Long id, @RequestBody DadosAluno dadosAtualizados) {
+	public ResponseEntity<Object> atualizarAluno(@PathVariable Long id, @RequestBody @Valid DadosAluno dadosAtualizados) {
 		Optional<AlunoModel> alunoOptional = service.encontrarUmAlunoPorId(id);
 		
 		if (alunoOptional.isPresent()) {
@@ -88,10 +89,9 @@ public class AlunoController {
 			
 			// salva o aluno atualizado no bd
 			service.atualizarAluno(aluno);
-			return "Aluno atualizado com sucesso!";
 		}
 		
-		return "Aluno não encontrado!";
+		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
 	
 	@DeleteMapping("/{id}")
