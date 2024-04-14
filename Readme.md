@@ -48,6 +48,10 @@ E por último iremos deletar nosso aluno do banco de dados através do DELETE:
 
 ![Deletando o aluno](./img/delete.png)
 
+Caso o aluno não seja encontrado no DELETE, será retornada uma mensagem:
+
+![Deletando o aluno](./img/deleteNãoEncontrado.png)
+
 E o arquivo UML do projeto:
 
 ![Arquivo UML](./img/School_System_UML.png)

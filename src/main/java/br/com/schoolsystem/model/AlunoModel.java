@@ -19,7 +19,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Data // Utiliza os getters e setters
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "alunos")

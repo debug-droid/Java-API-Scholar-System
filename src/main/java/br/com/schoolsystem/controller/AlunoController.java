@@ -89,14 +89,22 @@ public class AlunoController {
 			
 			// salva o aluno atualizado no bd
 			service.atualizarAluno(aluno);
+			return ResponseEntity.status(HttpStatus.OK).body(aluno);
+		} else {
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 		}
 		
-		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+		
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity deletarAlunoPorId(@PathVariable Long id) {
+	public ResponseEntity<String> deletarAlunoPorId(@PathVariable Long id) {
+		Optional<AlunoModel> alunoOptional = service.encontrarUmAlunoPorId(id);
+		
+		if(!alunoOptional.isPresent()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Aluno não encontrado!");
+		}
 		service.deletarAlunoPorId(id);
-		return ResponseEntity.noContent().build();
+		return ResponseEntity.status(HttpStatus.OK).body("Aluno deletado com sucesso.");
 	}
 }
